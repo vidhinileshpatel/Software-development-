@@ -1,0 +1,78 @@
+Create table Student
+(StudentID int not null auto_increment primary key,
+FirstName varchar(250) not null,
+LastName varchar(250) not null,
+Age int not null,
+Gender char(1) not null,
+Email varchar(250) unique not null,
+PhoneNumber int unique not null,
+AddressLine1 varchar(250) not null,
+AddressLine2 varchar(250),
+City varchar(200) not null,
+State char(2) not null,
+ZipCode int not null,
+Country varchar(250) not null
+);
+
+Create table Application
+(StudentID int not null,
+ApplicationID int not null auto_increment primary key,
+App_Date date not null,
+Essay varchar(300) not null,
+Instrument varchar(200) not null,
+Proficiency_Level Varchar (100) not null,
+Recording_Type varchar(250) not null,
+Recording_URL varchar(300) not null,
+Pair_StudentID int not null,
+Pair_Priority int not null,
+Accepted char(5) not null,
+Digital_Sign varchar(100) not null,
+FOREIGN KEY (StudentID) references Student(StudentID)
+); 
+
+create table Medical_info
+(StudentID int not null,
+Guardian_Name varchar(250) not null,
+Relationship varchar(200) not null,
+Phone int not null,
+email varchar(250) unique not null,
+Med_info varchar(250) not null,
+Disability varchar(250) not null,
+foreign key (StudentID) references Student(StudentID)
+);
+
+create table Band_Info
+(StudentID int not null,
+ApplicationID int not null,
+Band_Date date not null,
+foreign key (StudentID) references Student(StudentID),
+foreign key (ApplicationID) references Application(ApplicationID)
+);
+
+create table Dorm
+(StudentID int not null,
+ApplicationID int not null,
+Assigned varchar(250) not null,
+foreign key (StudentID) references Student(StudentID),
+foreign key (ApplicationID) references Application(ApplicationID)
+);
+
+create table CheckIn
+(StudentID int not null,
+ApplicationID int not null,
+Instruction varchar(350) not null,
+Form varchar(250) not null,
+foreign key (StudentID) references Student(StudentID),
+foreign key (ApplicationID) references Application(ApplicationID)
+);
+
+create table Payment
+(StudentID int not null,
+ApplicationID int not null,
+Payment_date date not null,
+Payment_type varchar(250) not null,
+Amount int not null,
+Refunded varchar(100),
+foreign key (StudentID) references Student(StudentID),
+foreign key (ApplicationID) references Application(ApplicationID)
+);
