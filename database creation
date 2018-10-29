@@ -1,3 +1,5 @@
+/* Create the tables Student, Application, Medical_Info, Band_Info, Dorm, CheckIn, Payment*/
+
 Create table Student
 (StudentID int not null auto_increment primary key,
 FirstName varchar(250) not null,
